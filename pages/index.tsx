@@ -17,8 +17,10 @@ export default function Home() {
         <p className={styles.description}>
 	  		Add a Greek coffee acronym to retrieve its parsed version, like so:
         </p>
-	  	<Link href={`/${EXAMPLE_ACRONYM}`} className={styles.link}>
-	  		<pre className={styles.code}>{`https://thelw.coffee/${EXAMPLE_ACRONYM}`}</pre>
+	  	<Link href={`/${EXAMPLE_ACRONYM}`}>
+	  		<a className={styles.link}>
+	  			<pre className={styles.code}>{`https://thelw.coffee/${EXAMPLE_ACRONYM}`}</pre>
+	  		</a>
 	  	</Link>
 	  </main>
     </Layout>

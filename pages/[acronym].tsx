@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import Layout from '../components/layout'
-import parseCoffeeAcronym from '../lib'
+import parseCoffeeAcronym, { Acronym as CoffeeAcronym } from '../lib'
 import styles from '../styles/Home.module.css'
 
 const Acronym = () => {
@@ -13,8 +13,8 @@ const Acronym = () => {
 	try {
 		return (
 			<Layout>
-				<p classNames={styles.description}>Θέλω ένα:</p>
-				<h1 classNames={styles.title}>{parseCoffeeAcronym(acronym)}</h1>
+				<p className={styles.description}>Θέλω ένα:</p>
+				<h1 className={styles.title}>{parseCoffeeAcronym(acronym as CoffeeAcronym)}</h1>
 			</Layout>
 		)
 	} catch (error) {

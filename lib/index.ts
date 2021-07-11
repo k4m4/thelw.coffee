@@ -4,7 +4,7 @@ type Decaf = 'de' | 'd' | '';
 type Sugar = 's' | 'o' | 'l' | 'm' | 'g';
 type SugarType = 'm' | 'k' | 'l' | 'a' | '';
 
-type Acronym = `${Freddo}${Type}${Decaf}${Sugar}${SugarType}`;
+export type Acronym = `${Freddo}${Type}${Decaf}${Sugar}${SugarType}`;
 type AcronymMatchGroup = [Acronym, Freddo, Type, Decaf, Sugar, SugarType];
 
 const INVALID_ACRONYM_ERROR = 'Invalid coffee acronym';
