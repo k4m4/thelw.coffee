@@ -10,9 +10,16 @@ const Acronym = () => {
 		return null
 	}
 
+	const ogImageBaseUrl = window.location.protocol + '//' + window.location.host
+	const encodedHref = encodeURIComponent(window.location.href)
+	const ogImage = `${ogImageBaseUrl}/api/og-image/${encodedHref}`
+
 	try {
 		return (
-			<Layout pageTitle={acronym.toUpperCase()}>
+			<Layout
+				pageTitle={acronym.toUpperCase()}
+				ogImage={ogImage}
+			>
 				<p className={styles.description}>
 					Θέλω ένα:
 				</p>
