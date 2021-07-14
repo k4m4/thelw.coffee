@@ -1,11 +1,14 @@
+const acronymRegex = /^([1-9])?(f)?(e|c)([1-9])?(de?)?(s|o|l|m|g)(m|k|l|a)?(de?)?$/i;
+
 type Freddo = 'f' | '';
 type Type = 'e' | 'c';
+type Dosage = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9';
 type Decaf = 'de' | 'd' | '';
 type Sugar = 's' | 'o' | 'l' | 'm' | 'g';
 type SugarType = 'm' | 'k' | 'l' | 'a' | '';
 
-export type Acronym = `${Freddo}${Type}${Decaf}${Sugar}${SugarType}`;
-type AcronymMatchGroup = [Acronym, Freddo, Type, Decaf, Sugar, SugarType];
+export type Acronym = `${Dosage}${Freddo}${Type}${Dosage	}${Decaf}${Sugar}${SugarType}${Decaf}`;
+type AcronymMatchGroup = [Acronym, Dosage, Freddo, Type, Dosage, Decaf, Sugar, SugarType, Decaf];
 
 const INVALID_ACRONYM_ERROR = 'Invalid coffee acronym';
 
@@ -15,17 +18,17 @@ class InvalidAcronymError extends Error {
 	}
 }
 
-const parseCoffeeAcronym = (acronym: Acronym): string => {
-	const match = acronym.match(/^(f)?(e|c)(de?)?(s|o|l|m|g)(m|k|l|a)?$/i);
-	if (!match) {
+const isCoffeeAcronym = (string: string): string is Acronym => {
+	return acronymRegex.test(string);
+};
+
+const parseCoffeeAcronym = (acronym: string): string => {
+	if (!isCoffeeAcronym(acronym)) {
 		throw new InvalidAcronymError();
 	}
 
+	const match = acronym.match(acronymRegex);
 	const [, ...acronymParts] = match as AcronymMatchGroup;
-	if (acronymParts.length !== 5) {
-		throw new InvalidAcronymError();
-	}
-
 	return parseAcronym(...acronymParts);
 };
 
@@ -37,6 +40,18 @@ const acronymValues = {
 	type: {
 		e: 'Espresso',
 		c: 'Capuccino',
+	},
+	dosage: {
+		1: 'Μονό',
+		2: 'Διπλό',
+		3: 'Τριπλό',
+		4: 'Τετραπλό',
+		5: 'Πενταπλό',
+		6: 'Εξαπλό',
+		7: 'Εφταπλό',
+		8: 'Οκταπλό',
+		9: 'Εννιαπλό',
+		'': '',
 	},
 	decaf: {
 		d: 'Decaf',
@@ -60,16 +75,20 @@ const acronymValues = {
 };
 
 const parseAcronym = (
+	dosageStart: Dosage,
 	freddo: Freddo,
 	type: Type,
-	decaf: Decaf,
+	dosageMid: Dosage,
+	decafMid: Decaf,
 	sugar: Sugar,
 	sugarType: SugarType,
+	decafEnd: Decaf,
 ): string => {
 	return [
 		acronymValues.freddo[freddo],
 		acronymValues.type[type],
-		acronymValues.decaf[decaf],
+		acronymValues.dosage[dosageStart || dosageMid],
+		acronymValues.decaf[decafMid || decafEnd],
 		acronymValues.sugar[sugar],
 		acronymValues.sugarType[sugarType],
 	].filter(Boolean).join(' ');
