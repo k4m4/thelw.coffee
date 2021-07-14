@@ -12,7 +12,7 @@ const Acronym = () => {
 
 	try {
 		return (
-			<Layout>
+			<Layout pageTitle={acronym.toUpperCase()}>
 				<p className={styles.description}>Θέλω ένα:</p>
 				<h1 className={styles.title}>{parseCoffeeAcronym(acronym as CoffeeAcronym)}</h1>
 			</Layout>

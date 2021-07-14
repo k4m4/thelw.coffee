@@ -7,7 +7,7 @@ export default function Layout({ pageTitle, children }: { pageTitle?: string, ch
   return (
     <div className={styles.container}>
       <Head>
-        <title>Thelw Coffee</title>
+        <title>{pageTitle && `${pageTitle} | `}Thelw Coffee</title>
         <meta name="description" content="Greek Coffee acronym parser" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
