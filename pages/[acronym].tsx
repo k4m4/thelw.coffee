@@ -6,7 +6,7 @@ import styles from '../styles/Home.module.css'
 const Acronym = () => {
 	const router = useRouter()
 	const { acronym } = router.query
-	if (!acronym) {
+	if (!acronym || typeof acronym !== 'string') {
 		return null
 	}
 
