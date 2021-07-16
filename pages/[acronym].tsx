@@ -3,6 +3,8 @@ import Layout from '../components/layout'
 import parseCoffeeAcronym, { Acronym as CoffeeAcronym } from '../lib'
 import styles from '../styles/Home.module.css'
 
+const SITE_BASE_URL = 'https://thelw.coffee'
+
 const Acronym = () => {
 	const router = useRouter()
 	const { acronym } = router.query
@@ -10,9 +12,8 @@ const Acronym = () => {
 		return null
 	}
 
-	const ogImageBaseUrl = window.location.protocol + '//' + window.location.host
-	const encodedHref = Buffer.from(window.location.href).toString('base64')
-	const ogImage = `${ogImageBaseUrl}/api/og-image/${encodedHref}`
+	const encodedHref = encodeURIComponent(`${SITE_BASE_URL}/${acronym}`)
+	const ogImage = `${SITE_BASE_URL}/api/og-image?url=${encodedHref}`
 
 	try {
 		return (
