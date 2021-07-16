@@ -21,9 +21,11 @@ const Head = ({ pageTitle, ogImage }: HeadProps) => {
 	return (
 		<NextHead>
 			<title>{title}</title>
-			<meta name="description" content={DESCRIPTION} />
 			<meta property="og:title" content={title} />
+			<meta name="twitter:title" content={title} />
+			<meta name="description" content={DESCRIPTION} />
 			<meta property="og:description" content={DESCRIPTION} />
+			<meta name="twitter:description" content={DESCRIPTION} />
 			{ogImage && (
 				<>
 					<meta property="og:image" content={ogImage} />
@@ -33,13 +35,12 @@ const Head = ({ pageTitle, ogImage }: HeadProps) => {
 			{/* <link rel="icon" href="/favicon.ico" /> */}
 			<meta property="og:locale" content={LOCALE} />
 			<meta property="og:site_name" content={SITE_NAME} />
+			<meta property="twitter:domain" content={SITE_DOMAIN} />
 			<meta property="og:type" content="website" />
 			<meta property="og:url" content={url} />
-			<meta name="twitter:card" content="summary_large_image" />
-			<meta property="twitter:domain" content={SITE_DOMAIN} />
 			<meta property="twitter:url" content={url} />
-			<meta name="twitter:title" content={title} />
-			<meta name="twitter:description" content={DESCRIPTION} />
+			<meta name="twitter:card" content="summary_large_image" />
+			<meta name="twitter:creator" content="@nikolaskama" />
 		</NextHead>
 	)
 }
