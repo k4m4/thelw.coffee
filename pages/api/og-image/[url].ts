@@ -13,7 +13,7 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
 	} = request
 
 	try {
-		const buffer = await captureWebsite.buffer(decodeURI(String(url)), {
+		const buffer = await captureWebsite.buffer(Buffer.from(String(url), 'base64').toString('ascii'), {
 			width: parseInt(String(process.env.CARD_WIDTH)) || DEFAULT_CARD_WIDTH,
 			height: parseInt(String(process.env.CARD_HEIGHT)) || DEFAULT_CARD_HEIGHT,
 			launchOptions: {

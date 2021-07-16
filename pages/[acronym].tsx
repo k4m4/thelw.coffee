@@ -11,7 +11,7 @@ const Acronym = () => {
 	}
 
 	const ogImageBaseUrl = window.location.protocol + '//' + window.location.host
-	const encodedHref = encodeURIComponent(window.location.href)
+	const encodedHref = Buffer.from(window.location.href).toString('base64')
 	const ogImage = `${ogImageBaseUrl}/api/og-image/${encodedHref}`
 
 	try {
