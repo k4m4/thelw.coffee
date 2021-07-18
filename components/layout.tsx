@@ -17,7 +17,7 @@ type HeadProps = {
 
 const Head = ({ pageTitle, ogImage }: HeadProps) => {
 	const router = useRouter()
-	const title: string = `${pageTitle && `${pageTitle} | `}${SITE_NAME}`
+	const title: string = `${pageTitle ? `${pageTitle} | ` : ''}${SITE_NAME}`
 	const url = `${SITE_BASE_URL}${router.asPath}`
 	return (
 		<NextHead>
