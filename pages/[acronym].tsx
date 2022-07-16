@@ -18,6 +18,7 @@ const Acronym = ({ acronym }: AcronymProps) => {
 	const ogImage = `${SITE_BASE_URL}/api/og-image?url=${encodedHref}`
 
 	try {
+        const parsedCoffeeAcronym = parseCoffeeAcronym(acronym as CoffeeAcronym)
 		return (
 			<Layout
 				pageTitle={acronym.toUpperCase()}
@@ -27,12 +28,15 @@ const Acronym = ({ acronym }: AcronymProps) => {
 					Θέλω ένα:
 				</p>
 				<h1 className={styles.title}>
-					{parseCoffeeAcronym(acronym as CoffeeAcronym)}
+					{parsedCoffeeAcronym}
 				</h1>
 			</Layout>
 		)
 	} catch (error) {
-		return <Layout>{error.message}</Layout>
+        const errorMessage = error instanceof Error
+            ? error.message
+            : 'Something unexpected happened.'
+		return <Layout>{errorMessage}</Layout>
 	}
 }
 

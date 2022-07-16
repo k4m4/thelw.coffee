@@ -29,7 +29,9 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
 	} catch (error) {
 		response.status(500).json({
 			status: 'error',
-			message: error.message,
+			message: error instanceof Error
+                ? error.message
+                : 'Failed to generate Open Graph image',
 		})
 	}
 }
