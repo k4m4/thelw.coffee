@@ -5,7 +5,7 @@ import chrome from 'chrome-aws-lambda'
 const DEFAULT_CARD_WIDTH = 800
 const DEFAULT_CARD_HEIGHT = 450
 
-export default async (request: NextApiRequest, response: NextApiResponse) => {
+const OGImage = async (request: NextApiRequest, response: NextApiResponse) => {
 	const {
 		query: {
 			url,
@@ -35,3 +35,5 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
 		})
 	}
 }
+
+export default OGImage
